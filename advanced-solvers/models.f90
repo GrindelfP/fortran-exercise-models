@@ -5,6 +5,7 @@ module models_m
     
     real(8) :: k_pursuit = 0.6d0, k_beatles = 1.0d0
     real(8) :: tom_R = 1.0d0
+    real(8) :: I_joseph, beta_joseph, A_joseph, omega_joseph
 
 contains
 
@@ -49,5 +50,14 @@ contains
         res(3) = -Y(1) / r**3                 ! dvx/dt 
         res(4) = -Y(2) / r**3                 ! dvy/dt
     end function orbit_f
+
+    ! JOSEPHSON JUNCTION
+    function joseph_f(t, Y) result(res)
+        real(8), intent(in) :: t, Y(:)
+        real(8) :: res(size(Y))
+    
+        res(1) = Y(2)
+        res(2) = I_joseph - sin(Y(1)) - beta_joseph * Y(2) + A_joseph * sin(omega_joseph * t)
+    end function joseph_f
 
 end module models_m
