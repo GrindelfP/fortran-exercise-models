@@ -89,7 +89,7 @@ contains
         do i = 1, n_steps
             ! Perform one RK4 step
             ! Note: The generic rk4 in ode_solver updates Y_state and t_curr
-            call rk4(josephson_derivs, t_curr, Y_state, h, 1.d-8, 1.d-10)
+            call rk4(josephson_system, t_curr, Y_state, h, 1.d-8, 1.d-10)
             
             ! Accumulate voltage for averaging if we passed transient time
             if (t_curr >= t_avg_start) then

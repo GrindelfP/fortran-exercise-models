@@ -20,13 +20,12 @@ module josephson_model_m
 contains
 
     !--------------------------------------------------------------------------
-    ! FUNCTION: josephson_derivs
-    ! Matches the 'ode_func' interface required by ode_solver_m
+    ! FUNCTION: josephson_system
     ! Y(1) = Voltage (V)
     ! Y(2) = Phase (phi)
     ! Y(3) = Radiation Phase (u)
     !--------------------------------------------------------------------------
-    function josephson_derivs(t, Y) result(dY)
+    function josephson_system(t, Y) result(dY)
         real(8), intent(in) :: t
         real(8), intent(in) :: Y(:)
         real(8) :: dY(size(Y))
@@ -50,6 +49,6 @@ contains
         ! Equation: du/dt = omega
         dY(3) = sys_params%omega
         
-    end function josephson_derivs
+    end function josephson_system
 
 end module josephson_model_m
